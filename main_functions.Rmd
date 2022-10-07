@@ -48,7 +48,6 @@ IF you would like to learn more about pkgdown I recommend these resources:
 
 ### Let's get started! 🏁 {.tabset}
 
-
 Before we jump in, we have to make sure the following items are installed/set up correctly!:
 
 1. [git](https://git-scm.com/) - a version control software
@@ -115,33 +114,48 @@ library(devtools) #Will load usesthis and roxgen2 as well
 library(pkgdown)
 ```
 
+### The best things come in {pkgdown} 🎁
 
-### Our first GitHub Action! 💥
+Like many package dev tools, **`{usethis}`** will assist you in configuring your package so you can build a slick website!
 
-**`{usethis}`** will be your portal to the most commonly use R GHA templates! You can access any of the templates from the `r-lib/actions` repository.
-
-Remember `devtools::check()` from our previous sessions? Well, for our first workflow, we are going to set up a GHA to run `R-CMD-CHECK` on our R package in one operating system (by default its Ubuntu), on the latest version of R. 
-
-Go ahead and run:
+To initiate this process, run:
 
 ```{r}
-use_github_action_check_release()
+use_pkgdown()
 ```
+
 Notice, how this function does a few things on your behalf:
 
-1. First it creates a hidden directory: `.github/`
-2. Adds `.github/` directory to you `.gitignore`
-3. Creates a directory: `.github/workflow`
-4. Downloads version 2 of the R CMD CHECK  template from [ r-lib/actions/examples/check-release.yaml](https://github.com/r-lib/actions/blob/v2-branch/.github/workflows/check-standard.yaml)
-5. The function also prompts us to add the badge to `README.Rmd`! Who doesn't like badges!? Remember to knit to regenerate the `README.md`! 
+1. Adds `^_pkgdown\\.yml$`, `^docs$`, `^pkgdown$` to `.Rbuildignore` file
+2. Adding 'docs' to `.gitignore` file
+3. Creates and open `_pkgdown.yml`. This file controls the overall structure and 'look' of your site
 
-Lets take a look at the `R-CMD-check.yml`:
+Now try this and *be blown away 🤯*
 
-- Explain the structure 
-- Explain where each steps come from
-- Where does the `v2` come from?
+```{r}
+pkgdown::build_site()
+```
 
-**Now commit these changes and push and see the magic work!**  🧙‍♀️
+This function sweeps through all your package and builds .html for the 3 main sections of your webpage:
+
+1. Homepage (README, Author/Contributors info, GitHub URL, Badges)
+2. Reference (A directory of all your functions )
+3. Articles (Your vignettes) 
+
+Note that if you only have one vignette and it's named as your package name e.g. 'ohwhaley.Rmd', this will automatically be rendered as your 'Getting Started' page
+
+### Storage is a little different 🗃
+
+⚠️ Did you get the warning? 
+
+![](img/nottheremate.png)
+
+OK so things in {pkgdown} requires a slightly different file organisation! What is helpful is that the creators have provided very informative warning messages
+
+```{r}
+
+```
+
 
 ### Different OS and R versions 📚
 
