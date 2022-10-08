@@ -38,17 +38,13 @@ In this part of the workshop, we will learn to create and customise a **webpage 
 We will be using some very handy R tools today! Massive shout out to the contributors and maintainers for of [{usethis}](https://github.com/r-lib/usethis), [{pkgdown}](https://github.com/r-lib/pkgdown) and [r-lib/actions](https://github.com/r-lib/actions/graphs/contributors) for making our lives easier! 👏👏👏
 
 ### Hi, have you met pkgdown? 🤝
-{pkgdown} creates beautiful, static html websites for your R package in a few steps. They are straight-foward to configure and can be easily deployed alongside your GitHub pages.
+`{pkgdown}` creates beautiful, static `html` websites for your R package in a few steps. They are straight-forward to configure and  deployed using GitHub pages.
 
-IF you would like to learn more about pkgdown I recommend these resources: 
-
--
--
--
+If you would like to learn more about `{pkgdown}` I recommend having a good read of the the official [`{pkgdown}` site](https://pkgdown.r-lib.org/articles/pkgdown.html)- made with `{pkgdown}` 😉 Its one I always find myself returning to!
 
 ### Let's get started! 🏁 {.tabset}
 
-Before we jump in, we have to make sure the following items are installed/set up correctly!:
+Before we jump in, we have to make sure the following are installed/set up correctly!:
 
 1. [git](https://git-scm.com/) - a version control software
 2. your [GitHub Personal Access Token (PAT)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) - your key to GitHub's API 🔑 
@@ -57,34 +53,37 @@ Before we jump in, we have to make sure the following items are installed/set up
 
 If not, click through the tabs below to set these up
 
-#### Install git
-
-git installation is  via the shell terminal and is OS dependent, so take a look at [this chapter](https://happygitwithr.com/install-git.html#install-git){target="_blank"} of Happy git with R to get started!
-
-#### Create a PAT
+#### Check first
 
 First, we can check if we have git and PAT installed/set up correctly. You may have done so in previous projects! Your past self has your back! 🙏
 
-```{r sanity check, class.source = 'fold-hide'} 
+```{r sanity check} 
 usethis::git_sitrep()git_sitrep() # git situation report
 ```
 
 If git and PAT has already been set up, we would see this under the bold heading **GitHub**:
 
 ![](img/sitrep.png)
-If you don't see this ⚠️ Follow the next steps to git sorted 😉 
+
+If you don't see this ⚠️ Follow the next tabs to _git sorted_ 😉 
+
+#### Install git
+
+git installation is  via the shell terminal and is OS dependent, so take a look at [this chapter](https://happygitwithr.com/install-git.html#install-git){target="_blank"} of Happy git with R to get started!
+
+#### Create a PAT
 
 I recommend having a good read of `?usethis::gh_token_help()` and follow the instructions there
 
 If you want more details, try the [tl;dr section](https://happygitwithr.com/https-pat.html#tldr){target="_blank"} of the Happy Git and GitHub for the useR book and the subsequent chapters, these will get you on your feet in no time! 
 
-```{r good help and create, class.source = 'fold-hide'}
+```{r good help and create}
 ?usethis::gh_token_help()
 ```
 
 This function will open up a browser for you to select the scopes you want to your PAT to do. The recommended scopes are already pre-selected for ya!
 
-```{r token, class.source = 'fold-hide'}
+```{r token}
 usethis::create_github_token() 
 ```
 
@@ -94,14 +93,14 @@ If `usethis::create_github_token()` fails, try this link to create a PAT manuall
 
 Once you a PAT has been created for you, **copy and save this in your password manager!** For security reasons, you won't get to see the PAT again if you close the browser!  Now we will register your PAT using:
 
-```{r gitset, class.source = 'fold-hide'}
-#install.packages("gitcreds")
+```{r gitset}
+# install.packages("gitcreds")
 gitcreds::gitcreds_set()
 ```
 
 Once this is complete, just for peace of mind... check your git settings are OK!
 
-```{r check twice, class.source = 'fold-hide'}
+```{r check twice}
 usethis::git_sitrep() # git situation report
 ```
 
@@ -114,7 +113,7 @@ library(devtools) #Will load usesthis and roxgen2 as well
 library(pkgdown)
 ```
 
-### The best things come in {pkgdown} 🎁
+### The best things come as {pkgdown} pages 🎁
 
 Like many package dev tools, **`{usethis}`** will assist you in configuring your package so you can build a slick website!
 
@@ -130,13 +129,13 @@ Notice, how this function does a few things on your behalf:
 2. Adding 'docs' to `.gitignore` file
 3. Creates and open `_pkgdown.yml`. This file controls the overall structure and 'look' of your site
 
-Now try this and *be blown away 🤯*
+Now try this and **be blown away** 🤯
 
 ```{r}
 pkgdown::build_site()
 ```
 
-This function sweeps through all your package and builds .html for the 3 main sections of your webpage:
+This function sweeps through all your package and builds `.htmls` for the 3 main sections of your webpage:
 
 1. Homepage (README, Author/Contributors info, GitHub URL, Badges)
 2. Reference (A directory of all your functions )
@@ -150,25 +149,25 @@ Note that if you only have one vignette and it's named as your package name e.g.
 
 ![](img/nottheremate.png)
 
-OK so things in {pkgdown} requires a slightly different file organisation! No biggie! Any images e.g hexstickers or plots generated in your README, needs to be stored either in `man/figures` or `vignettes/` 
+OK so things in `{pkgdown}` requires a slightly different file organisation! No biggie! Any images e.g hex stickers or plots generated in your documentation, needs to be stored either in `man/figures` or `vignettes/` 
 
-Go ahead and move these files manually in your Files Explorer or Finder 
+Go ahead and move these files manually in your Files Explorer or Finder 📨
 
-### Set it and forget it with GitHub Actions ⏲
+### Set it & forget it with GitHub Actions ⏲
 
 So, are you telling me I have to `build_site()` every time I want to make changes to my website?! Thankfully not 😉! 
 
-We can rely on the `[pkgdown` GitHub Action workflow](https://github.com/r-lib/pkgdown) to continuously integrate the building  and deployment of our website. This is called a CI/CD workflow to software devs. You only need to set this up once! 
+We can rely on the [`pkgdown` GitHub Action workflow](https://github.com/r-lib/pkgdown) to continuously integrate the building  and deployment of our website. This is called a CI/CD workflow to software devs. You only need to set this up once! 
 
 Give it a try: 
-
 ```{r}
 use_pkgdown_github_pages()
 ```
 
-👀 Note: This function will ask if you want to **overwrite the existing `_pkgdown.yml`**. In this instance - this is totally okay cause we haven't made any substantial changes to the file. Alternatively, you can abort this function but selecting `No way`, commit your current files and then proceed to run `use_pkgdown_github_pages()`
+👀 Note: This function will ask if you want to **overwrite the existing `_pkgdown.yml`**. In this instance - this is totally okay since we haven't made any substantial changes to the file. Alternatively, you can abort this function but selecting `No way`, commit your current files and then proceed to run `use_pkgdown_github_pages()`
 
 This function does a few things for us with our PAT: 
+
 - it will create/overwrite `_pkgdown.yml`
 - create a separate `gh-pages` branch in your repo for deployment. This keeps your repo organised so your `master/main` branch remains R package specific! 
 - set up GitHub Pages for you and creating the URL
@@ -177,7 +176,7 @@ This function does a few things for us with our PAT:
 
 **Now commit and push these changes! Navigate to your repo and admire your work!** 🖼
 
-### Updating your package documentation {.tabset} 📝
+### Updating your package documentation 📝 {.tabset} 
 
 The wonderful thing about `{pkgdown}`, is that it eliminates double handling, you don't need to write seperate files again to build a website! You can **directly make changes to your documentation files and this will automatically update your site! So what happens if you want to add more functions, or update the contributor lists or want to fix a typo in existing documentation? We can ultimately rely on the GHA we just set up, but often we want to preview changes locally. 
 
@@ -219,41 +218,77 @@ Below I've provided workflows for updating following files, notice that I've:
 
 ### Articles galore? 📚
 
+So what if you want more Articles on your site for case studies, walk-throughs but don't want to necessarily exported these as vignettes with your R package?  
+
+We can use: 
+
 ```{r}
 usethis::use_article()
 ```
-vignettes/articles/
 
+Similar to `usethis::vignette()`, this will create a .Rmd and store it in `vignettes/articles/`. Once you are done editing the .Rmd, use `build_articles()` to preview
 
-
-Now to the fun stuff
+Now to the fun stuff! 
 
 ### Customising your website ✨🎨 
 
+Similar to a `ggplot`, you can tweak *almost* anything on your `{pkgdown}`. Below, I will go through a few simple features to achieve a polished looking site. If you require more specific styling, I recommend [this page](https://pkgdown.r-lib.org/articles/customise.html).
+
 #### Boot-itful themes
 
-https://bootswatch.com/
+The most efficient way to style your pkgdown site is to use Bootswatch themes. You can preview these theme here: https://bootswatch.com/
 
-https://pkgdown.r-lib.org/articles/customise.html
+Once you have selected one you like, you can assign the name of the theme as the `bootswatch` parameter in your `_pkgdown.yml` 
+
+```yaml
+url: https://fontikar.github.io/ohwhaley/
+template:
+  bootstrap: 5
+  bootswatch: journal
+```
+
+I am going to go for the `Journal` theme! I like the look of the pink! 
+
+![](img/thinkpink.png)
+Now you quickly preview these changes without building the whole site by using: 
+
+```{r}
+build_home_index()
+
+preview_site() # Opens new browser with recent changes
+```
+
+Hang on...why is my page not like the example in the preview? Why is my navbar...not pink?! 
+
+![](img/allwhite.png)
+
+Well generally, each Bootswatch theme has three background (`bg`) variations: `light`, `dark` and `primary` and two forground (`type`) variations: `light` and `dark`
+
+`{pkgdown}` will attempt to choose the correct colours for `bg` and `type` according to the preview but sometimes this doesn't match. We can override the default navbar  colour palette by changing the values for `bg` and `type` as below:
+
+```yaml
+url: https://fontikar.github.io/ohwhaley/
+template:
+  bootstrap: 5
+  bootswatch: journal
+navbar:
+  bg: primary
+  type: light
+```
+
+Repeat the build process for the home page but this time use `init_site()`. This implements your recent changes but doesn't open a new tab. To view your changes, hit `Refresh` or Ctrl/Cmd+R - ta-da! 🎉
+
+```{r}
+build_home_index()
+
+init_site() # Implements changes
+```
 
 #### Nifty Navbars 🔦
 
-
+What if we want to add more features or change the order of our navbar items?
 
 #### Ordering your Reference Section 🗂
 
-
-```yaml
-jobs:
- R-CMD-check:
-    runs-on: ${{ matrix.config.os }}
-
-    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
-
-    strategy:
-      fail-fast: false
-      matrix:
-        config:
-          - {os: macOS-latest,   r: '3.6'}
-```
+For larger, more complex packages that have many functions, it is often useful to group our functions in a logical, tidy way for the Reference section. For example, take a look at the pkgdown reference section
 
