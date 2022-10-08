@@ -104,6 +104,10 @@ Once this is complete, just for peace of mind... check your git settings are OK!
 usethis::git_sitrep() # git situation report
 ```
 
+### The best things come as {pkgdown} pages 🎁
+
+Lets go ahead and load the packages we need
+
 If you haven't already, lets load `{devtools}` and `{pkgdown}`
 
 ```{r Prep}
@@ -113,11 +117,7 @@ library(devtools) #Will load usesthis and roxgen2 as well
 library(pkgdown)
 ```
 
-### The best things come as {pkgdown} pages 🎁
-
-Like many package dev tools, **`{usethis}`** will assist you in configuring your package so you can build a slick website!
-
-To initiate this process, run:
+Like many package dev tools, **`{usethis}`** will assist you in configuring your package so you can build a slick website! To initiate this process, run:
 
 ```{r}
 use_pkgdown()
@@ -184,7 +184,7 @@ This is when you will become familiar with the [`build_XX()` functions](https://
 
 These targeted `build_XX()` can help streamline a developer's workflow. Particularly if they are working on a very comprehensive website with many Articles to render! There is certainly nothing wrong with using `build_site()` as a default (that is what I do for simple packages)!
 
-Below I've provided workflows for updating following files, notice that I've:
+Below I've provided workflows for updating following files, notice that I've used specific `build_XX()` for each type of documentation changes:
 
 #### DESCRIPTION (Authors/URLs)
 
@@ -211,12 +211,7 @@ Below I've provided workflows for updating following files, notice that I've:
 4. `usethis::build_vignettes()`
 5. `pkgdown::build_site()`
 
-
-```{r}
-
-```
-
-### Articles galore? 📚
+### Got Articles? 📚
 
 So what if you want more Articles on your site for case studies, walk-throughs but don't want to necessarily exported these as vignettes with your R package?  
 
@@ -232,7 +227,7 @@ Now to the fun stuff!
 
 ### Customising your website ✨🎨 
 
-Similar to a `ggplot`, you can tweak *almost* anything on your `{pkgdown}`. Below, I will go through a few simple features to achieve a polished looking site. If you require more specific styling, I recommend [this page](https://pkgdown.r-lib.org/articles/customise.html).
+Similar to a `ggplot`, you can tweak *almost* anything on your `{pkgdown}` webpage. Below, I will go through a few simple features to achieve a polished looking site. If you require more specific styling, I recommend [this documentation on the {pkgdown} site](https://pkgdown.r-lib.org/articles/customise.html).
 
 #### Boot-itful themes
 
@@ -284,9 +279,63 @@ build_home_index()
 init_site() # Implements changes
 ```
 
-#### Nifty Navbars 🔦
+#### Bars {.tabset}
 
-What if we want to add more features or change the order of our navbar items?
+You can customise the contents of the navbar, footer, and home page sidebar using the `navbar`, `footer`, and `sidebar` fields in your `_pkgdown.yml`
+
+### Nifty Navbars 
+
+What if we want to add more features or change the order of our navbar items? We can control the layout of our navbar items using the `structure` field.
+
+```yaml
+navbar:
+  structure:
+    left:  [intro, reference, articles]
+    right: [search, github]
+```
+
+You can add additional items such as:
+
+- [News](https://pkgdown.r-lib.org/reference/build_news.html) section to showcase recent changes to your package (e.g. bug fixes, new features)
+- [Tutorial section](https://pkgdown.r-lib.org/reference/build_tutorials.html) for embedding [`learnr` tutorials](https://rstudio.github.io/learnr/).  These can be stored in `inst/tutorials` or `vignettes/tutorials` 
+
+```yaml
+navbar:
+  structure:
+    left:  [intro, reference, articles, tutorials, news]
+    right: [search, github]
+```
+
+You can alter the content of each navbar section using `component`. For example, if you have multiple articles e.g. the [{tidyverse::dplyr} site](https://dplyr.tidyverse.org/), you can create subheaders or section separators in the dropdown menu to better organise your `Articles` like so:
+
+```yaml
+navbar:
+ components:
+   articles:
+    text: Articles
+    menu:
+    - text: "Menu sub-heading"
+    - text: Article name A1
+      href: 'articles/a1.html'
+    - text: Article name A2
+      href: articles/a2.html
+    - text: -------
+    - text: "Another menu subheading"
+    - text: Article name B1
+      href: articles/b1.html
+```
+
+![](img/menuspls.png)
+
+### Slick Sidebars  
+
+#### Fabulous Footers
+
+
+
+
+
+
 
 #### Ordering your Reference Section 🗂
 
