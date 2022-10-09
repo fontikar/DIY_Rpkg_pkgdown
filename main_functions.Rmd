@@ -229,7 +229,7 @@ Now to the fun stuff!
 
 Similar to a `ggplot`, you can tweak *almost* anything on your `{pkgdown}` webpage. Below, I will go through a few simple features to achieve a polished looking site. If you require more specific styling, I recommend [this documentation on the {pkgdown} site](https://pkgdown.r-lib.org/articles/customise.html).
 
-#### Boot-itful themes
+#### Boot-itful themes 🦄
 
 The most efficient way to style your pkgdown site is to use Bootswatch themes. You can preview these theme here: https://bootswatch.com/
 
@@ -279,13 +279,11 @@ build_home_index()
 init_site() # Implements changes
 ```
 
-#### Bars {.tabset}
+#### Nifty Navbars 🗺
 
-You can customise the contents of the navbar, footer, and home page sidebar using the `navbar`, `footer`, and `sidebar` fields in your `_pkgdown.yml`
+What if we want to add more features or change the order of our navbar items? We can **control the layout of our navbar** items using the `structure` field within the `navbar` controls in your `_pkgdown.yml`
 
-### Nifty Navbars 
-
-What if we want to add more features or change the order of our navbar items? We can control the layout of our navbar items using the `structure` field.
+Currently the default layout of all pkgdown sites is:
 
 ```yaml
 navbar:
@@ -299,6 +297,7 @@ You can add additional items such as:
 - [News](https://pkgdown.r-lib.org/reference/build_news.html) section to showcase recent changes to your package (e.g. bug fixes, new features)
 - [Tutorial section](https://pkgdown.r-lib.org/reference/build_tutorials.html) for embedding [`learnr` tutorials](https://rstudio.github.io/learnr/).  These can be stored in `inst/tutorials` or `vignettes/tutorials` 
 
+For example:
 ```yaml
 navbar:
   structure:
@@ -306,7 +305,7 @@ navbar:
     right: [search, github]
 ```
 
-You can alter the content of each navbar section using `component`. For example, if you have multiple articles e.g. the [{tidyverse::dplyr} site](https://dplyr.tidyverse.org/), you can create subheaders or section separators in the dropdown menu to better organise your `Articles` like so:
+You can alter the **content of each navbar section** using the `component` field. For example, if you have multiple articles like the [{tidyverse::dplyr} site](https://dplyr.tidyverse.org/), you can create subheaders or section separators in the dropdown menu to better organise your `Articles` section like so:
 
 ```yaml
 navbar:
@@ -326,18 +325,51 @@ navbar:
 ```
 
 ![](img/menuspls.png)
-
-### Slick Sidebars  
-
-#### Fabulous Footers
-
-
-
-
-
-
+You can also edit your [sidebar](https://pkgdown.r-lib.org/articles/customise.html#sidebar) and [footer](https://pkgdown.r-lib.org/articles/customise.html#footer) from the current default st, though I rarely deviate from the defaults. The process is similar as the navbar example above! Learn more here at the [{pkgdown} customising your site article](https://pkgdown.r-lib.org/articles/customise.html)
 
 #### Ordering your Reference Section 🗂
 
-For larger, more complex packages that have many functions, it is often useful to group our functions in a logical, tidy way for the Reference section. For example, take a look at the pkgdown reference section
+For larger, more complex packages that have many functions, it is often useful to group our functions in a logical, tidy way for the Reference section. For example, take a look at the [{pkgdown} reference section](https://pkgdown.r-lib.org/reference/index.html). 
 
+We can tweak the Reference using the `reference` field in the `_pkgdown.yml`
+
+You can add a `title` or `subtitle` to divide your functions and provide it with an information using the `desc` field (description). 
+
+Here is an example from the `{ohwhaley}` package so you can see what field corresponds to what outcome:
+
+```yaml
+reference:
+- title: Exported functions
+  desc:  Whaley nice description
+- contents:
+  - say
+- subtitle: Where are whale puns stored
+- contents:
+  - phrases
+- title: Data
+- contents:
+  - cetacean_data
+```
+
+![](img/reference.png)
+
+#### Tidy content selection
+
+There are few handy functions teo help you select functions that share the same prefix or suffix: 
+
+- `starts_with("prefix")` to select these shared prefixes 
+e.g. `join_all`, `join_with`, `join_by` 
+- `ends_with("suffix")` for shared suffixes 
+e.g. `make_data`, `change_data`, `bind_data`
+
+#### Hide internal functions
+
+Have some utility functions that you don't want to share in your Reference section? No probs! Pop these using a section with the `title` field set to `internal`. Note that there is **NO `-`** in front of the **contents** field
+
+```yaml
+- title: internal
+  contents:
+  - phrases
+```
+
+![](img/hideinternal.png)
