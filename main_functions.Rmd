@@ -38,18 +38,16 @@ In this part of the workshop, we will learn to create and customise a **webpage 
 We will be using some very handy R tools today! Massive shout out to the contributors and maintainers for of [{usethis}](https://github.com/r-lib/usethis), [{pkgdown}](https://github.com/r-lib/pkgdown) and [r-lib/actions](https://github.com/r-lib/actions/graphs/contributors) for making our lives easier! 👏👏👏
 
 ### Hi, have you met pkgdown? 🤝
-`{pkgdown}` creates beautiful, static `html` websites for your R package in a few steps. They are straight-forward to configure and  deployed using GitHub pages.
-
-If you would like to learn more about `{pkgdown}` I recommend having a good read of the the official [`{pkgdown}` site](https://pkgdown.r-lib.org/articles/pkgdown.html)- made with `{pkgdown}` 😉 Its one I always find myself returning to!
+`{pkgdown}` creates beautiful, static `html` websites for your R package in a few steps. They are straight-forward to configure and  deployed using GitHub pages. If you would like to learn more about `{pkgdown}` I recommend having a good read of the the official [`{pkgdown}` site](https://pkgdown.r-lib.org/articles/pkgdown.html) - made with `{pkgdown}` 😉 Its one I always find myself returning to!
 
 ### Let's get started! 🏁 {.tabset}
 
 Before we jump in, we have to make sure the following are installed/set up correctly!:
 
-1. [git](https://git-scm.com/) - a version control software
-2. your [GitHub Personal Access Token (PAT)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) - your key to GitHub's API 🔑 
+1. [git](https://git-scm.com/), a version control software
+2. your [GitHub Personal Access Token (PAT)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token), your key to GitHub's API 🔑 
 
-**If you have both these set up, skip ahead** 
+**If you have both these set up, [skip ahead](#jump)** 
 
 If not, click through the tabs below to set these up
 
@@ -104,7 +102,7 @@ Once this is complete, just for peace of mind... check your git settings are OK!
 usethis::git_sitrep() # git situation report
 ```
 
-### The best things come as {pkgdown} pages 🎁
+### The best things come as {pkgdown} pages 🎁 {#jump}
 
 Lets go ahead and load the packages we need
 
@@ -141,7 +139,7 @@ This function sweeps through all your package and builds `.htmls` for the 3 main
 2. Reference (A directory of all your functions )
 3. Articles (Your vignettes) 
 
-Note that if you only have one vignette and it's named as your package name e.g. 'ohwhaley.Rmd', this will automatically be rendered as your 'Getting Started' page
+**👀 Note** that if you only have one vignette and it's named as your package name e.g. 'ohwhaley.Rmd', this will automatically be rendered as your 'Getting Started' page
 
 ### Storage is a little different 🗃
 
@@ -153,18 +151,18 @@ OK so things in `{pkgdown}` requires a slightly different file organisation! No 
 
 Go ahead and move these files manually in your Files Explorer or Finder 📨
 
-### Set it & forget it with GitHub Actions ⏲
+### Set & forget it with GitHub Actions ⏲
 
 So, are you telling me I have to `build_site()` every time I want to make changes to my website?! Thankfully not 😉! 
 
-We can rely on the [`pkgdown` GitHub Action workflow](https://github.com/r-lib/pkgdown) to continuously integrate the building  and deployment of our website. This is called a CI/CD workflow to software devs. You only need to set this up once! 
+We can rely on the [`pkgdown` GitHub Action workflow](https://github.com/r-lib/pkgdown) to **continuously integrate the building and deployment** of our website. This is called a **CI/CD** workflow to software devs. You only need to set this up once! 
 
 Give it a try: 
 ```{r}
 use_pkgdown_github_pages()
 ```
 
-👀 Note: This function will ask if you want to **overwrite the existing `_pkgdown.yml`**. In this instance - this is totally okay since we haven't made any substantial changes to the file. Alternatively, you can abort this function but selecting `No way`, commit your current files and then proceed to run `use_pkgdown_github_pages()`
+**👀 Note:** This function will ask if you want to **overwrite the existing `_pkgdown.yml`**. This is totally okay since we haven't made any substantial changes to the file, but I would be mindful! Alternatively, you can abort the function, commit your current changes and then proceed to run `use_pkgdown_github_pages` and allow it overwrite your changes
 
 This function does a few things for us with our PAT: 
 
@@ -178,11 +176,11 @@ This function does a few things for us with our PAT:
 
 ### Updating your package documentation 📝 {.tabset} 
 
-The wonderful thing about `{pkgdown}`, is that it eliminates double handling, you don't need to write seperate files again to build a website! You can **directly make changes to your documentation files and this will automatically update your site! So what happens if you want to add more functions, or update the contributor lists or want to fix a typo in existing documentation? We can ultimately rely on the GHA we just set up, but often we want to preview changes locally. 
+The wonderful thing about `{pkgdown}`, is that it eliminates double handling, you don't need to write seperate files again to build a website! You can **directly make changes to your documentation files and this will automatically update your site!** So what happens if you want to add more functions, or update the contributor lists or want to fix a typo in existing documentation? We can ultimately rely on the GHA we just set up, but often we want to preview changes locally. 
 
 This is when you will become familiar with the [`build_XX()` functions](https://pkgdown.r-lib.org/reference/index.html#build). Let's say that you've fixed a typo in your README, well it is a bit of an overkill to build the entire site to materialise this change? This is when you would use the more targeted `build_home()` function 🎯
 
-These targeted `build_XX()` can help streamline a developer's workflow. Particularly if they are working on a very comprehensive website with many Articles to render! There is certainly nothing wrong with using `build_site()` as a default (that is what I do for simple packages)!
+These targeted `build_XX()` functions can help streamline a developer's workflow, particularly if they are working on a very comprehensive website with many Articles to render! There is certainly nothing wrong with using `build_site()` as a default (that is what I do for simple packages)!
 
 Below I've provided workflows for updating following files, notice that I've used specific `build_XX()` for each type of documentation changes:
 
@@ -194,7 +192,7 @@ Below I've provided workflows for updating following files, notice that I've use
 
 #### README
 
-1. Add/Edit your `README` - Note if you are using a `README.Rmd`, remember to knit to regenerate its fellow `README.md` 
+1. Add/Edit your `README` - **Note** if you are using a `README.Rmd`, remember to knit to regenerate its fellow `README.md` 
 2. `usethis::document()`
 3. `pkgdown::build_home()`
 
@@ -245,6 +243,8 @@ template:
 I am going to go for the `Journal` theme! I like the look of the pink! 
 
 ![](img/thinkpink.png)
+
+
 Now you quickly preview these changes without building the whole site by using: 
 
 ```{r}
@@ -253,11 +253,13 @@ build_home_index()
 preview_site() # Opens new browser with recent changes
 ```
 
+`build_home_index()` runs faster than `build_home` as it ONLY builds the `index.html` homepage. This will skip the building  the `authors` + `LICENSE` htmls which is handy if you want to quickly preview your changes. 
+
 Hang on...why is my page not like the example in the preview? Why is my navbar...not pink?! 
 
 ![](img/allwhite.png)
 
-Well generally, each Bootswatch theme has three background (`bg`) variations: `light`, `dark` and `primary` and two forground (`type`) variations: `light` and `dark`
+Well generally, each Bootswatch theme has three background (`bg`) variations: `light`, `dark` and `primary` and two foreground (`type`) variations: `light` and `dark`
 
 `{pkgdown}` will attempt to choose the correct colours for `bg` and `type` according to the preview but sometimes this doesn't match. We can override the default navbar  colour palette by changing the values for `bg` and `type` as below:
 
@@ -364,7 +366,9 @@ e.g. `make_data`, `change_data`, `bind_data`
 
 #### Hide internal functions
 
-Have some utility functions that you don't want to share in your Reference section? No probs! Pop these using a section with the `title` field set to `internal`. Note that there is **NO `-`** in front of the **contents** field
+Have some utility functions that you don't want to share in your Reference section? No probs! Pop these using a section with the `title` field set to `internal`. 
+
+**👀 Note** that there is **NO `-`** in front of the **contents** field
 
 ```yaml
 - title: internal
