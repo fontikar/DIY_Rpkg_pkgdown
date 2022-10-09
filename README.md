@@ -3,7 +3,7 @@ Workshop materials for implementing your {pkgdown} for your R package 📦👩�
 
 <center>
 
-![Cute package](https://media3.giphy.com/media/VVn7hZqr5gYmeLl6fq/giphy.gif){width=50%}
+<img src="https://media3.giphy.com/media/VVn7hZqr5gYmeLl6fq/giphy.gif" width="50%">
 
 </center>
 
