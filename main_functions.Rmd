@@ -207,7 +207,7 @@ Below I've provided workflows for updating following files, notice that I've use
 2. Knit to see if you like your changes
 3. `usethis::document()`
 4. `usethis::build_vignettes()`
-5. `pkgdown::build_site()`
+5. `pkgdown::build_articles()`
 
 ### Got Articles? 📚
 
@@ -216,12 +216,12 @@ So what if you want more Articles on your site for case studies, walk-throughs b
 We can use: 
 
 ```{r}
-usethis::use_article()
+usethis::use_article() 
 ```
 
-Similar to `usethis::vignette()`, this will create a .Rmd and store it in `vignettes/articles/`. Once you are done editing the .Rmd, use `build_articles()` to preview
+Similar to `usethis::vignette()`, this will create a .Rmd and store it in `vignettes/articles/`. Once you are done editing the .Rmd, use `build_articles()` to preview your work!
 
-Now to the fun stuff! 
+Now to the fun stuff! ⏭
 
 ### Customising your website ✨🎨 
 
@@ -255,13 +255,13 @@ preview_site() # Opens new browser with recent changes
 
 `build_home_index()` runs faster than `build_home` as it ONLY builds the `index.html` homepage. This will skip the building  the `authors` + `LICENSE` htmls which is handy if you want to quickly preview your changes. 
 
-Hang on...why is my page not like the example in the preview? Why is my navbar...not pink?! 
+Hang on...why is my page not like the example in the preview? Why is my navbar...not pink?! (There are times I've tested this and it was BLUE!?)
 
 ![](img/allwhite.png)
 
 Well generally, each Bootswatch theme has three background (`bg`) variations: `light`, `dark` and `primary` and two foreground (`type`) variations: `light` and `dark`
 
-`{pkgdown}` will attempt to choose the correct colours for `bg` and `type` according to the preview but sometimes this doesn't match. We can override the default navbar  colour palette by changing the values for `bg` and `type` as below:
+`{pkgdown}` will attempt to choose the correct colours for `bg` and `type` according to the preview but sometimes this doesn't match. We can override the default navbar colour palette by changing the values for `bg` and `type` as below:
 
 ```yaml
 url: https://fontikar.github.io/ohwhaley/
@@ -281,7 +281,9 @@ build_home_index()
 init_site() # Implements changes
 ```
 
-#### Nifty Navbars 🗺
+⚠️🐛 When I tested this section on a mac M1 machine and attempted to override the default colours of the Journal theme....it turned blue! I end up switching the theme entirely to something else e.g. `theme: cosmo` and built the site and made sure it changed. After that, I reverted back to `theme: journal` and set the `bg: primary` and `type: light` and it seemed to work again! Just flagging here in case it is consistent across the workshop!
+
+### Nifty Navbars 🗺
 
 What if we want to add more features or change the order of our navbar items? We can **control the layout of our navbar** items using the `structure` field within the `navbar` controls in your `_pkgdown.yml`
 
@@ -293,6 +295,8 @@ navbar:
     left:  [intro, reference, articles]
     right: [search, github]
 ```
+
+**Lets try moving the GitHub icon to the left!**
 
 You can add additional items such as:
 
@@ -329,7 +333,7 @@ navbar:
 ![](img/menuspls.png)
 You can also edit your [sidebar](https://pkgdown.r-lib.org/articles/customise.html#sidebar) and [footer](https://pkgdown.r-lib.org/articles/customise.html#footer) from the current default st, though I rarely deviate from the defaults. The process is similar as the navbar example above! Learn more here at the [{pkgdown} customising your site article](https://pkgdown.r-lib.org/articles/customise.html)
 
-#### Ordering your Reference Section 🗂
+### Ordering your Reference Section 🗂
 
 For larger, more complex packages that have many functions, it is often useful to group our functions in a logical, tidy way for the Reference section. For example, take a look at the [{pkgdown} reference section](https://pkgdown.r-lib.org/reference/index.html). 
 
@@ -337,9 +341,10 @@ We can tweak the Reference using the `reference` field in the `_pkgdown.yml`
 
 You can add a `title` or `subtitle` to divide your functions and provide it with an information using the `desc` field (description). 
 
-Here is an example from the `{ohwhaley}` package so you can see what field corresponds to what outcome:
+Here is an [example from the `{ohwhaley}`](https://github.com/fontikar/ohwhaley/blob/pkg/_pkgdown.yml) package so you can see what field corresponds to what outcome:
 
 ```yaml
+  navbar:
 reference:
 - title: Exported functions
   desc:  Whaley nice description
@@ -354,6 +359,8 @@ reference:
 ```
 
 ![](img/reference.png)
+
+**👀 Note:** I've included the `navbar:` field so you see how the indents need to be formatted relative to the other fields! 
 
 #### Tidy content selection
 
@@ -371,6 +378,8 @@ Have some utility functions that you don't want to share in your Reference secti
 **👀 Note** that there is **NO `-`** in front of the **contents** field
 
 ```yaml
+  navbar:
+reference:
 - title: internal
   contents:
   - phrases
