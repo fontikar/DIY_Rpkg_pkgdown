@@ -242,8 +242,11 @@ template:
 
 I am going to go for the `Journal` theme! I like the look of the pink! 
 
-![](img/thinkpink.png)
+<center>
 
+![](img/thinkpink.png){width=50%}
+
+</center>
 
 Now you quickly preview these changes without building the whole site by using: 
 
@@ -357,8 +360,11 @@ reference:
 - contents:
   - cetacean_data
 ```
+<center>
 
-![](img/reference.png)
+![](img/reference.png){width=50%}
+
+</center>
 
 **👀 Note:** I've included the `navbar:` field so you see how the indents need to be formatted relative to the other fields! 
 
@@ -384,5 +390,8 @@ reference:
   contents:
   - phrases
 ```
+<center>
 
-![](img/hideinternal.png)
+![](img/hideinternal.png){width=50%}
+
+</center>
