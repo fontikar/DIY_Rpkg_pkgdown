@@ -1,11 +1,11 @@
 # DIY R package workshop - Part 3
 Workshop materials for implementing your {pkgdown} for your R package 📦👩‍💻
 
-<center>
+<p align="center">
 
 <img src="https://media3.giphy.com/media/VVn7hZqr5gYmeLl6fq/giphy.gif" width="50%">
 
-</center>
+</p>
 
 ### Hello! Welcome! 👋
 
