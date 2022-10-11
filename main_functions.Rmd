@@ -147,9 +147,9 @@ This function sweeps through all your package and builds `.htmls` for the 3 main
 
 ![](img/nottheremate.png)
 
-OK so things in `{pkgdown}` requires a slightly different file organisation! No biggie! Any images e.g hex stickers or plots generated in your documentation, needs to be stored either in `man/figures` or `vignettes/` 
+OK so things in `{pkgdown}` requires a slightly different file organisation! No biggie! Any images e.g hex stickers or plots generated in your documentation, needs to be stored either in `man/figures` or `vignettes/`
 
-Go ahead and move these files manually in your Files Explorer or Finder 📨
+Go ahead and move these files manually in your Files Explorer or Finder 📨  and update any file paths in your documentation accordingly!
 
 ### Set & forget it with GitHub Actions ⏲
 
@@ -314,6 +314,8 @@ navbar:
     right: [search, github]
 ```
 
+### Ordering your Articles menu 🗂
+
 You can alter the **content of each navbar section** using the `component` field. For example, if you have multiple articles like the [{tidyverse::dplyr} site](https://dplyr.tidyverse.org/), you can create subheaders or section separators in the dropdown menu to better organise your `Articles` section like so:
 
 ```yaml
@@ -343,7 +345,6 @@ For larger, more complex packages that have many functions, it is often useful t
 We can tweak the Reference using the `reference` field in the `_pkgdown.yml`
 
 You can add a `title` or `subtitle` to divide your functions and provide it with an information using the `desc` field (description). 
-
 Here is an [example from the `{ohwhaley}`](https://github.com/fontikar/ohwhaley/blob/pkg/_pkgdown.yml) package so you can see what field corresponds to what outcome:
 
 ```yaml

@@ -29,15 +29,17 @@ This file is also neatly rendered here so its easier to read and to copy and pas
 
 ### Overview of workshop:
 
-Interactive coding
-  - The best things come as {pkgdown} pages 🎁
-  - Storage is a little different 🗃
-  -Set & forget it with GitHub Actions ⏲
-  - Updating your package documentation 📝
-  - Got Articles? 📚
-  - Customising your website ✨🎨
-  - Nifty Navbars 🗺
-  - Ordering your Reference Section 🗂
+Interactive coding:
+
+- The best things come as {pkgdown} pages 🎁
+- Storage is a little different 🗃
+-Set & forget it with GitHub Actions ⏲
+- Updating your package documentation 📝
+- Got Articles? 📚
+- Customising your website ✨🎨
+- Nifty Navbars 🗺
+- Ordering your Articles menu 🗂
+- Ordering your Reference Section 🗂
 
 ### Additional resources
 If you want to give your package something *extra*:
