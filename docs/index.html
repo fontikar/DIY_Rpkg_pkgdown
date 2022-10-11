@@ -1882,7 +1882,8 @@ file organisation! No biggie! Any images e.g hex stickers or plots
 generated in your documentation, needs to be stored either in
 <code>man/figures</code> or <code>vignettes/</code></p>
 <p>Go ahead and move these files manually in your Files Explorer or
-Finder 📨</p>
+Finder 📨 and update any file paths in your documentation
+accordingly!</p>
 </div>
 <div id="set-forget-it-with-github-actions" class="section level3">
 <h3>Set &amp; forget it with GitHub Actions ⏲</h3>
@@ -2088,6 +2089,9 @@ tutorials</a>. These can be stored in <code>inst/tutorials</code> or
   structure:
     left:  [intro, reference, articles, tutorials, news]
     right: [search, github]</code></pre>
+</div>
+<div id="ordering-your-articles-menu" class="section level3">
+<h3>Ordering your Articles menu 🗂</h3>
 <p>You can alter the <strong>content of each navbar section</strong>
 using the <code>component</code> field. For example, if you have
 multiple articles like the <a href="https://dplyr.tidyverse.org/">{tidyverse::dplyr} site</a>, you can
@@ -2124,8 +2128,7 @@ reference section</a>.</p>
 the <code>_pkgdown.yml</code></p>
 <p>You can add a <code>title</code> or <code>subtitle</code> to divide
 your functions and provide it with an information using the
-<code>desc</code> field (description).</p>
-<p>Here is an <a href="https://github.com/fontikar/ohwhaley/blob/pkg/_pkgdown.yml">example
+<code>desc</code> field (description). Here is an <a href="https://github.com/fontikar/ohwhaley/blob/pkg/_pkgdown.yml">example
 from the <code>{ohwhaley}</code></a> package so you can see what field
 corresponds to what outcome:</p>
 <pre class="yaml"><code>  navbar:
